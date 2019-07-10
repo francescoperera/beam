@@ -30,6 +30,7 @@ from apache_beam.options.value_provider import ValueProvider
 from apache_beam.transforms.display import HasDisplayData
 
 __all__ = [
+    'AwsOptions',
     'PipelineOptions',
     'StandardOptions',
     'TypeOptions',
@@ -342,6 +343,18 @@ class DirectOptions(PipelineOptions):
         default=0,
         help='replay every bundle this many extra times, for profiling'
         'and debugging')
+
+class AwsOptions(PipelineOptions):
+  """AWS conenction options."""
+
+  @classmethod
+  def _add_argparse_args(cls, parser):
+    parser.add_argument('--aws_access_key',
+                      dest='aws_access_key',
+                      help='aws_access_key')
+    parser.add_argument('--aws_secret_key',
+                      dest='aws_secret_key',
+                      help='aws_secret_key')
 
 
 class GoogleCloudOptions(PipelineOptions):
